@@ -36,7 +36,7 @@ Portkey enables users to buy cryptocurrencies, like tokens and NFT, with fiat mo
 
 ### How does Portkey DID work?
 
-![pic](../docs/source/Introduction/pic.png)
+![pic](pic.png)
 
 
 ## Portkey SDK
