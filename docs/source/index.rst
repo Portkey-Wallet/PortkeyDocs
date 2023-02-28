@@ -1,13 +1,17 @@
 Welcome to Portkey documentation!
 ===================================
 
-.. note::
-
-   This project is under active development.
 
 Contents
 --------
 
 .. toctree::
 
-   GetStart <GetStart/index>
+   Introduction <Introduction/index>
+
+   Portkey DID SDK <PortkeyDIDSDK/index>
+
+   Portkey DID UI SDK <PortkeyDIDUISDK/index>
+
+   Examples <Examples/index>
+   

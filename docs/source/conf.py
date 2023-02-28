@@ -14,6 +14,7 @@ extensions = [
     'sphinx.ext.doctest',
     'sphinx.ext.autodoc',
     'sphinx.ext.autosummary',
+    'recommonmark',
     'sphinx.ext.intersphinx',
 ]
 
