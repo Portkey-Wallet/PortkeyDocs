@@ -8,4 +8,4 @@ Building a Web3 game? Use the Portkey SDKs to enable seemless onboarding for you
 
 ### Bingogame
 
-Github repo:(coming soon).
+Github repo:[BingoGame](https://github.com/Portkey-Wallet/portkey-bingo-game.git).
