@@ -288,7 +288,7 @@ did.services.verifyVerificationCode({
   verificationCode: 'verificationCode',
 });
 ```
-[npm-image-version]: https://img.shields.io/npm/v/@portkey/did
-[npm-image-downloads]: https://img.shields.io/npm/dm/@portkey/did.svg
-[npm-url]: https://npmjs.org/package/@portkey/did
+[npm-image-version](https://img.shields.io/npm/v/@portkey/did)
+[npm-image-downloads](https://img.shields.io/npm/dm/@portkey/did.svg)
+[npm-url](https://npmjs.org/package/@portkey/did)
 
