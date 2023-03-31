@@ -34,23 +34,23 @@ After that, you need configure did server node、graphQL node、storage suite.
 
 ```javascript
 class Store implements IStorageSuite {
-    async getItem(key: string) {
-        return localStorage.getItem(key);
-    }
-    async setItem(key: string, value: string) {
-        return localStorage.setItem(key, value);
-    }
-    async removeItem(key: string) {
-    return   localStorage.removeItem(key);
-    }
+  async getItem(key: string) {
+    return localStorage.getItem(key);
+  }
+  async setItem(key: string, value: string) {
+    return localStorage.setItem(key, value);
+  }
+  async removeItem(key: string) {
+    return localStorage.removeItem(key);
+  }
 }
 did.setConfig({
-    requestDefaults: {
-        baseURL: 'your did server node',
-        timeout: 'timeout', // optional default 8000ms
-    },
-    graphQLUrl: 'your graphQL node',
-    storageMethod: new Store(),
+  requestDefaults: {
+    baseURL: 'your did server node',
+    timeout: 'timeout', // optional default 8000ms
+  },
+  graphQLUrl: 'your graphQL node',
+  storageMethod: new Store(),
 });
 ```
 
@@ -69,13 +69,14 @@ That’s it! Now you can use the did object.
 Where you configure did server node, graphQL node, storage suite.
 
 ```javascript
-did.setConfig(
-    {requestDefaults: {
-        baseURL: 'your did server node',
-    },
-        graphQLUrl: 'your graphQL node',
-        storageMethod: 'your storage suite',
-    });
+did.setConfig({
+  requestDefaults: {
+    baseURL: 'you did server node',
+    timeout: 'timeout', // optional default 8000ms
+  },
+  graphQLUrl: 'your graphQL node',
+  storageMethod: 'your storage suite',
+});
 ```
 
 ###### did.login
@@ -93,17 +94,17 @@ Example
 ```javascript
 did.login('loginAccount', {
   chainId: 'chainId',
-  loginGuardianAccount: 'loginGuardianAccount',
+  loginGuardianIdentifier: 'loginGuardianIdentifier',
   guardiansApproved: [
     {
       type: 'Email',
-      value: 'value',
+      identifier: 'identifier',
       verifierId: 'verifierId',
       verificationDoc: 'verificationDoc',
       signature: 'signature',
     },
   ],
-  deviceString: 'deviceString',
+  extraData: 'extraData',
   context: {
     requestId: 'requestId',
     clientId: 'clientId',
@@ -115,15 +116,19 @@ did.login('loginAccount', {
 
 Logged in management to add management.
 
-```javascript
+```ts
 login(type: 'scan', params: ScanLoginParams): Promise<true>;
-  Example
+```
+
+Example
+
+```javascript
 did.login('scan',{
   chainId: 'chainId',
   caHash: 'caHash',
-  management: {
-    managementAddress: 'managementAddress',
-    deviceString: 'deviceString';
+  managerInfo: {
+    address: 'address',
+    extraData: 'extraData'
   };
 })
 ```
@@ -158,7 +163,7 @@ did.logout({ chainId: 'chainId' });
 ###### register
 
 ```javascript
-register(params: Omit<RegisterParams, 'managementAddress'>): Promise<RegisterResult>;
+register(params: Omit<RegisterParams, 'manager'>): Promise<RegisterResult>;
 ```
 
 Example
@@ -166,8 +171,8 @@ Example
 ```javascript
 did.register({
   type: 'Email',
-  loginGuardianAccount: 'loginGuardianAccount',
-  deviceString: 'deviceString',
+  loginGuardianIdentifier: 'loginGuardianIdentifier',
+  extraData: 'extraData',
   chainId: 'chainId',
   verifierId: 'verifierId',
   verificationDoc: 'verificationDoc',
@@ -199,30 +204,30 @@ did.getRegisterStatus({
 getHolderInfo by graphQL.
 
 ```javascript
-getHolderInfo(params: Pick<GetHolderInfoParams, 'managementAddress' | 'chainId'>): Promise<Array<GetCAHolderByManagementResult>>;
+getHolderInfo(params: Pick<GetHolderInfoParams, 'manager' | 'chainId'>): Promise<GetCAHolderByManagerResult>;
 ```
 
 Example
 
 ```javascript
 did.getHolderInfo({
-  managementAddress: 'managementAddress', // optional
+  manager: 'manager', // optional
   chainId: 'chainId',
 });
 ```
 
-getHolderInfo by contracts.
+getHolderInfo by server.
 
 ```javascript
-getHolderInfo(params: Pick<GetHolderInfoParams, 'managementAddress' | 'chainId'>): Promise<Array<GetCAHolderByManagementResult>>;
+getHolderInfo(params: Omit<GetHolderInfoParams, 'manager'>): Promise<IHolderInfo>;
 ```
 
 Example
 
-```javascript  
+```javascript
 did.getHolderInfo({
-  caHash: 'caHash', // loginGuardianAccount and caHash choose one
-  loginGuardianAccount: 'loginGuardianAccount', // loginGuardianAccount and caHash choose one
+  caHash: 'caHash', // loginGuardianIdentifier and caHash choose one
+  loginGuardianIdentifier: 'loginGuardianIdentifier', // loginGuardianIdentifier and caHash choose one
   chainId: 'chainId',
 });
 ```
@@ -249,16 +254,16 @@ did.getVerifierServers({
 
 send verification code.
 
-```javascript
+```ts
 getVerificationCode(params: SendVerificationCodeParams): Promise<SendVerificationCodeResult>;
 ```
 
 Example
 
 ```javascript
-did._services.getVerificationCode({
+did.services.getVerificationCode({
   chainId: 'chainId',
-  guardianAccount: 'guardianAccount',
+  guardianIdentifier: 'guardianIdentifier',
   type: 'Email',
   verifierId: 'verifierId',
 });
@@ -275,11 +280,15 @@ verifyVerificationCode(params: VerifyVerificationCodeParams): Promise<VerifyVeri
 Example
 
 ```javascript
-did._services.verifyVerificationCode({
+did.services.verifyVerificationCode({
   verifierSessionId: 'verifierSessionId',
   chainId: 'chainId',
-  guardianAccount: 'guardianAccount',
+  guardianIdentifier: 'guardianIdentifier',
   verifierId: 'verifierId',
   verificationCode: 'verificationCode',
 });
 ```
+[npm-image-version]: https://img.shields.io/npm/v/@portkey/did
+[npm-image-downloads]: https://img.shields.io/npm/dm/@portkey/did.svg
+[npm-url]: https://npmjs.org/package/@portkey/did
+
