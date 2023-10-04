@@ -1,5 +1,6 @@
-Portkey DID SDK
-===================
+# Portkey DID SDK
+
+[![npm-image-version](https://img.shields.io/npm/v/@portkey/did)](https://npmjs.org/package/@portkey/did) ![npm-image-downloads](https://img.shields.io/npm/dm/@portkey/did.svg)
 
 ## Getting started
 
@@ -7,7 +8,7 @@ Portkey DID SDK
 
 The `@portkey/did` library is a collection of modules that contain functionality for the did ecosystem.
 
-- `@portkey/accounts` is for the portkey account.  
+- `@portkey/accounts` is for the portkey account.
 - `@portkey/utils` is for the portkey utils.
 - `@portkey/contracts` is for the portkey contracts.
 - `@portkey/graphql` is for the portkey graphql.
@@ -46,10 +47,10 @@ class Store implements IStorageSuite {
 }
 did.setConfig({
   requestDefaults: {
-    baseURL: 'your did server node',
-    timeout: 'timeout', // optional default 8000ms
+    baseURL: "your did server node",
+    timeout: "timeout", // optional default 8000ms
   },
-  graphQLUrl: 'your graphQL node',
+  graphQLUrl: "your graphQL node",
   storageMethod: new Store(),
 });
 ```
@@ -71,11 +72,11 @@ Where you configure did server node, graphQL node, storage suite.
 ```javascript
 did.setConfig({
   requestDefaults: {
-    baseURL: 'you did server node',
-    timeout: 'timeout', // optional default 8000ms
+    baseURL: "you did server node",
+    timeout: "timeout", // optional default 8000ms
   },
-  graphQLUrl: 'your graphQL node',
-  storageMethod: 'your storage suite',
+  graphQLUrl: "your graphQL node",
+  storageMethod: "your storage suite",
 });
 ```
 
@@ -92,22 +93,22 @@ did.login(type: 'loginAccount', params: AccountLoginParams): Promise<LoginResult
 Example
 
 ```javascript
-did.login('loginAccount', {
-  chainId: 'chainId',
-  loginGuardianIdentifier: 'loginGuardianIdentifier',
+did.login("loginAccount", {
+  chainId: "chainId",
+  loginGuardianIdentifier: "loginGuardianIdentifier",
   guardiansApproved: [
     {
-      type: 'Email',
-      identifier: 'identifier',
-      verifierId: 'verifierId',
-      verificationDoc: 'verificationDoc',
-      signature: 'signature',
+      type: "Email",
+      identifier: "identifier",
+      verifierId: "verifierId",
+      verificationDoc: "verificationDoc",
+      signature: "signature",
     },
   ],
-  extraData: 'extraData',
+  extraData: "extraData",
   context: {
-    requestId: 'requestId',
-    clientId: 'clientId',
+    requestId: "requestId",
+    clientId: "clientId",
   },
 });
 ```
@@ -143,8 +144,8 @@ Example
 
 ```javascript
 did.getLoginStatus({
-  chainId: 'chainId',
-  sessionId: 'sessionId',
+  chainId: "chainId",
+  sessionId: "sessionId",
 });
 ```
 
@@ -157,7 +158,7 @@ logout(params: EditManagementParams): Promise<boolean>;
 Example
 
 ```javascript
-did.logout({ chainId: 'chainId' });
+did.logout({ chainId: "chainId" });
 ```
 
 ###### register
@@ -170,16 +171,16 @@ Example
 
 ```javascript
 did.register({
-  type: 'Email',
-  loginGuardianIdentifier: 'loginGuardianIdentifier',
-  extraData: 'extraData',
-  chainId: 'chainId',
-  verifierId: 'verifierId',
-  verificationDoc: 'verificationDoc',
-  signature: 'signature',
+  type: "Email",
+  loginGuardianIdentifier: "loginGuardianIdentifier",
+  extraData: "extraData",
+  chainId: "chainId",
+  verifierId: "verifierId",
+  verificationDoc: "verificationDoc",
+  signature: "signature",
   context: {
-    requestId: 'requestId',
-    clientId: 'clientId',
+    requestId: "requestId",
+    clientId: "clientId",
   },
 });
 ```
@@ -194,8 +195,8 @@ Example
 
 ```javascript
 did.getRegisterStatus({
-  chainId: 'chainId',
-  sessionId: 'sessionId',
+  chainId: "chainId",
+  sessionId: "sessionId",
 });
 ```
 
@@ -211,8 +212,8 @@ Example
 
 ```javascript
 did.getHolderInfo({
-  manager: 'manager', // optional
-  chainId: 'chainId',
+  manager: "manager", // optional
+  chainId: "chainId",
 });
 ```
 
@@ -226,9 +227,9 @@ Example
 
 ```javascript
 did.getHolderInfo({
-  caHash: 'caHash', // loginGuardianIdentifier and caHash choose one
-  loginGuardianIdentifier: 'loginGuardianIdentifier', // loginGuardianIdentifier and caHash choose one
-  chainId: 'chainId',
+  caHash: "caHash", // loginGuardianIdentifier and caHash choose one
+  loginGuardianIdentifier: "loginGuardianIdentifier", // loginGuardianIdentifier and caHash choose one
+  chainId: "chainId",
 });
 ```
 
@@ -242,9 +243,9 @@ getVerifierServers(chainId: ChainId): Promise<VerifierItem[]>;
 
 Example
 
-```javascript  
+```javascript
 did.getVerifierServers({
-  chainId: 'chainId',
+  chainId: "chainId",
 });
 ```
 
@@ -262,10 +263,10 @@ Example
 
 ```javascript
 did.services.getVerificationCode({
-  chainId: 'chainId',
-  guardianIdentifier: 'guardianIdentifier',
-  type: 'Email',
-  verifierId: 'verifierId',
+  chainId: "chainId",
+  guardianIdentifier: "guardianIdentifier",
+  type: "Email",
+  verifierId: "verifierId",
 });
 ```
 
@@ -281,18 +282,10 @@ Example
 
 ```javascript
 did.services.verifyVerificationCode({
-  verifierSessionId: 'verifierSessionId',
-  chainId: 'chainId',
-  guardianIdentifier: 'guardianIdentifier',
-  verifierId: 'verifierId',
-  verificationCode: 'verificationCode',
+  verifierSessionId: "verifierSessionId",
+  chainId: "chainId",
+  guardianIdentifier: "guardianIdentifier",
+  verifierId: "verifierId",
+  verificationCode: "verificationCode",
 });
 ```
-[npm-image-version](https://img.shields.io/npm/v/@portkey/did)
-
-[npm-image-downloads](https://img.shields.io/npm/dm/@portkey/did.svg)
-
-[npm-url](https://npmjs.org/package/@portkey/did)
-
-
-
